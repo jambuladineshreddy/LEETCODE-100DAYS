@@ -1,0 +1,26 @@
+from typing import List
+
+class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        for i in range(len(nums1)):
+            index = -1
+
+            # Find the index of nums1[i] in nums2
+            for j in range(len(nums2)):
+                if nums1[i] == nums2[j]:
+                    index = j
+                    break
+
+            # Assume no greater element exists
+            nge = -1
+
+            # Search to the right for the first greater element
+            for k in range(index + 1, len(nums2)):
+                if nums2[k] > nums1[i]:
+                    nge = nums2[k]
+                    break
+
+            # Store the result
+            nums1[i] = nge
+
+        return nums1
